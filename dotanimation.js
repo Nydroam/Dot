@@ -14,7 +14,7 @@ function setMousePosition(e) {
 }
 var dotSleep = function(){
 	console.log("sleeeep");
-	if(animLocks.bodyAnimating){
+	if(animLocks.bodyAnimating || ! sleeping){
 		return;
 	}
 	animLocks.bodyAnimating = true;
