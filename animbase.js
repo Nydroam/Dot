@@ -19,6 +19,7 @@ var animateDot = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget,rych
 		done = false;
 	}
 	if(done){
+		console.log("done");
 		trigger.trigger = true;
 	}
 	dot.draw();

@@ -4,17 +4,53 @@ var followid;
 var followidVert;
 var currrad = dot.dotyrad;
 var currypos = dot.y;
+var currxrad = dot.dotxrad;
+var sleeping = false;
 var movingVert = false;
 var randID;
 function setMousePosition(e) {
 	mouseX = e.clientX;
 	mouseY = e.clientY;
 }
+var dotSleep = function(){
+	console.log("sleeeep");
+	if(animLocks.bodyAnimating){
+		return;
+	}
+	animLocks.bodyAnimating = true;
+	closeEyes(false,true);
+	sleeping = true;
+	var trig = {
+		trigger:false
+	};
+	
+	sleepid = setInterval(function(){
+		console.log(currrad-20);
+		console.log(dot.dotyrad);
+		animateDot(0,dot.x,1,currypos+40,-1,currxrad-30,-1,currrad-40,trig);},30);
+	trigger = setInterval(function(){
+		if(trig.trigger){
+			clearInterval(sleepid);
+			clearInterval(trigger);
+			trig.trigger = false;
+			sleepid = setInterval(function(){animateDot(0,dot.x,-1,currypos,1,currxrad,1,currrad,trig);},30);
+			trigger = setInterval(function(){
+				if(trig.trigger){
+					clearInterval(sleepid);
+					clearInterval(trigger);
+					animLocks.bodyAnimating = false;
+					dotSleep();
+				}
+			},20);
 
+		}
+	},20);
+}
 var dotFollow = function(){
 	if(animLocks.bodyAnimating){
 		return;
 	}
+
 	animLocks.bodyAnimating = true;
 	clearInterval(randID);
 	clearInterval(followid);
@@ -87,7 +123,6 @@ function randMove(){
 		return;
 	}
 	animLocks.bodyAnimating = true;
-	clearInterval(randID);
 	var randWidth = Math.round(Math.random()*(window.innerWidth - (4*dot.dotxrad)) + 2*dot.dotxrad);
 	console.log(randWidth);
 	var xchange;
@@ -98,6 +133,7 @@ function randMove(){
 		xchange = -1;
 	}
 	else{
+		animLocks.bodyAnimating = false;
 		xchange = 0;
 	}
 	

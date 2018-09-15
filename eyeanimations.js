@@ -56,7 +56,7 @@ var eyeDart = function(x1,y1,x2,y2){
 	}
 }
 
-var closeEyes= function( wink ){
+var closeEyes= function( wink , close){
 	var rand = Math.random()*2;
 	if(!animLocks.eyesAnimating){
 		animLocks.eyesAnimating = true;
@@ -74,6 +74,7 @@ var closeEyes= function( wink ){
 			clearInterval(triggerl);
 			clearInterval(animlid);
 			leftTrigger.trigger = false;
+			if(!close){
 			animlid = setInterval(function(){if(wink){
 				setTimeout(function(){animateLeftEye(0,dot.LExOffset,-1,currypos,0,dot.LExradius,1,30,leftTrigger)},100)
 			}
@@ -89,6 +90,7 @@ var closeEyes= function( wink ){
 		}
 	},25);
 		}
+		}
 	},25);
 	}
 	if(!wink || rand >= 1){
@@ -97,7 +99,7 @@ var closeEyes= function( wink ){
 		if(rightTrigger.trigger){
 			clearInterval(triggerr);
 			clearInterval(animrid);
-			leftTrigger.trigger = false;
+			if(!close){
 			rightTrigger.trigger = false;
 			animrid = setInterval(function(){if(wink){
 				setTimeout(function(){animateRightEye(0,dot.RExOffset,-1,currypos,0,dot.RExradius,1,30,rightTrigger)},200)
@@ -112,7 +114,7 @@ var closeEyes= function( wink ){
 			animLocks.eyesAnimating = false;
 		}
 	},25);
-		}
+		}}
 	},25);
 	}
 	
