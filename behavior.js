@@ -54,10 +54,10 @@ var updateBehavior = function(){
 		applyBehavior(c);
 	}
 	//Change Color based on Affection
-	if (Yind <= 1){
+	if (Yind <= 0){
 		changeColor(dot.shape,255,0,0);
 	}
-	else if (Yind == 3 || Yind == 2){
+	else if (Yind == 1 || Yind == 2){
 		changeColor(dot.shape,0,0,255);
 	}
 	else{
