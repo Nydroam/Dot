@@ -113,13 +113,14 @@ window.onbeforeunload = function store() {
 	}
 }
 console.log(localStorage.rest);
-
-var date;
-var rest;
-var time;
-var hour;
-var minutes;
-var affection;
+if (localStorage == "undefined") {
+	var date;
+	var rest;
+	var time;
+	var hour;
+	var minutes;
+	var affection;
+}
 var sleepTime = 1320; //22
 var wakeTime = 360; //6
 retrieve();

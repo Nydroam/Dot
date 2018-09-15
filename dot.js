@@ -1,7 +1,10 @@
 var vimg = document.getElementById("vimg");
 var bg = document.getElementById("background");
-var affection = 50;
-var energy = 50;
+var energy = rest;
+setInterval(function() {
+	localStorage.affection = affection;
+	localStorage.rest = energy;
+},60000);
 var animLocks = {
 	eyesAnimating:false,
 	bodyAnimating:false
