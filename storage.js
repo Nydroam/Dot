@@ -15,42 +15,60 @@ function retrieve() {
 function updateStatus(o_rest,o_time,o_affection,o_hours,o_minutes) {
 	//adjust rest and affection according to timelapse
 	var date2 = new Date();
-	console.log(date2);
 	var timelapse = Math.round((date2.getTime() - o_time)/60000) % 1440;
-	
-	console.log(timelapse);
-	
 	var o_hours = o_hours;
 	var o_minutes = o_minutes;
 	date1_t = parseInt(o_hours * 60) + parseInt(o_minutes);
-	date2_t = parseInt(date2.getUTCHours() * 60) + parseInt(date2.getUTCMinutes());
-	console.log(date1_t);
-	console.log(date2_t);
+	date2_t = parseInt(date2.getHours() * 60) + parseInt(date2.getMinutes());
 	var timeAsleep = 0;
 	var timeAwake = 0;
 
-	if (date2_t < date1_t) {
-		date2_t += 1440;
-		wakeTime += 1440;
-	}
-
-	if (date1_t < sleepTime) {
+	if (date1_t < wakeTime) {
 		if (date2_t > wakeTime) {
-			timeAwake = sleepTime - date1_t + date2_t - wakeTime;
+			if (date2_t < sleepTime) {
+				timeAwake = date2_t - wakeTime;
+			} else { //date2_t > sleepTime
+				timeAwake = sleepTime - wakeTime;
+			}
 		} else { //date2_t < wakeTime
-			timeAwake = wakeTime - date1_t;
+			if (date2_t > date1_t) {
+				//timeAwake = 0
+			} else { //date2_t < date1_t
+				timeAwake = sleepTime - wakeTime;
+			}
 		}
-		timeAsleep = timelapse - timeAwake;
 	} else { //date1_t > wakeTime
-		if (date2_t > wakeTime) {
-			timeAsleep = date2_t - wakeTime;
-		} else { //date2_t < wakeTime
-			timeAsleep = wakeTime - date2_t + date1_t - wakeTime
+		if (date1_t < sleepTime) {
+			if (date2_t > wakeTime) {
+				if (date2_t > sleepTime) {
+					timeAwake = sleepTime - date1_t;
+				} else { //date2_t < sleepTime
+					if (date2_t > date1_t) {
+						timeAwake = date2_t - date1_t;
+					} else { //date2_t < date1_t
+						timeAwake = sleepTime - date1_t + date2_t - wakeTime;
+					}
+				}
+			} else { //date2_t < wakeTime
+				timeAwake = date1_t - wakeTime;
+			} 
+		}else { // date1_t > sleepTime
+			if (date2_t > wakeTime) {
+				if (date2_t > sleepTime) {
+					if (date2_t > date1_t) {
+						//timeAwake = 0
+					} else { //date2_t < date1_t
+						timeAwake = sleepTime - wakeTime;
+					}
+				} else { //date2_t < sleepTime
+					timeAwake = date2_t - wakeTime;
+				}
+			} else { //date2_t < wakeTime;
+				//timeAwake = 0;
+			}
 		}
-		timeAwake = timelapse - timeAsleep;
 	}
-	console.log(timeAsleep);
-	console.log(timeAwake);
+	timeAsleep = timelapse - timeAwake;
 }
 
 function store() {
@@ -67,12 +85,11 @@ function store() {
 	}
 }
 var date = new Date();
-date.setTime(date.getTime() - 64800000);
-console.log(date);
+date.setTime(date.getTime() - 43200000);
 var rest = 960;
 var time = date.getTime();
-var hour = date.getUTCHours();
-var minutes = date.getUTCMinutes();
+var hour = date.getHours();
+var minutes = date.getMinutes();
 var affection = 100;
 var sleepTime = 1320; //22
 var wakeTime = 360; //6
