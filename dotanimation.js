@@ -6,6 +6,7 @@ var currrad = dot.dotyrad;
 var currypos = dot.y;
 var currxrad = dot.dotxrad;
 var sleeping = false;
+var sleepid;
 var movingVert = false;
 var randID;
 function setMousePosition(e) {
@@ -14,26 +15,27 @@ function setMousePosition(e) {
 }
 var dotSleep = function(){
 	console.log("sleeeep");
+	console.log(sleeping);
 	if(animLocks.bodyAnimating || ! sleeping){
+		clearInterval(sleepid);
+		clearInterval(trigger);
 		return;
 	}
 	animLocks.bodyAnimating = true;
-	closeEyes(false,true);
-	sleeping = true;
 	var trig = {
 		trigger:false
 	};
 	
-	sleepid = setInterval(function(){
-		console.log(currrad-20);
-		console.log(dot.dotyrad);
-		animateDot(0,dot.x,1,currypos+40,-1,currxrad-30,-1,currrad-40,trig);},30);
+	sleepid = setInterval(function(){if(energy <95 && sleeping){energy += 2;}
+		animateDot(0,dot.x,1,currypos+40,-1,currxrad-30,-1,currrad-40,trig);},20);
 	trigger = setInterval(function(){
 		if(trig.trigger){
 			clearInterval(sleepid);
 			clearInterval(trigger);
 			trig.trigger = false;
-			sleepid = setInterval(function(){animateDot(0,dot.x,-1,currypos,1,currxrad,1,currrad,trig);},30);
+			sleepid = setInterval(function(){
+
+				animateDot(0,dot.x,-1,currypos,1,currxrad,1,currrad,trig);},30);
 			trigger = setInterval(function(){
 				if(trig.trigger){
 					clearInterval(sleepid);
@@ -124,7 +126,6 @@ function randMove(){
 	}
 	animLocks.bodyAnimating = true;
 	var randWidth = Math.round(Math.random()*(window.innerWidth - (4*dot.dotxrad)) + 2*dot.dotxrad);
-	console.log(randWidth);
 	var xchange;
 	if (randWidth > dot.x + 5){
 		xchange = 1;

@@ -4,12 +4,13 @@ var blinkId;
 var winkId;
 var BehaviorChart = [
 	['R','R','C','C'],
-	['TR','ER','EW','WC'],
-	['TR','ER','EW','WC'],
-	['T','E','EW','W'],
+	['TR','ER','EWR','WC'],
+	['TR','ER','EWR','WC'],
+	['T','ER','EWR','WR'],
 	['S','S','S','S']
 ]
 var cleanBehavior = function(){
+	console.log("clean");
 	clearInterval(moveId);
 	clearInterval(winkId);
 	sleeping = false;
@@ -30,6 +31,7 @@ var applyBehavior = function(c){
 		winkId = setInterval(function(){wink()},3000);
 	}
 	else if (c == 'S'){
+		console.log("S?");
 		sleeping = true;
 		dotSleep();
 	}
@@ -39,28 +41,32 @@ var applyBehavior = function(c){
 }
 var updateBehavior = function(){
 	console.log(affection);
+	console.log(energy);
 	cleanBehavior();
-	var Yind = Math.round(energy/19.5);
-	var Xind = Math.round(affection/25);
-	var thingstoDo = BehaviorChart[Xind][5-Yind];
+	var Yind = Math.floor(affection/25);
+	var Xind = Math.round(energy/24);
+	console.log(Xind);
+	console.log(Yind);
+	var thingstoDo = BehaviorChart[4-Xind][Yind];
 	var i = 0;
 	for(i=0;i < thingstoDo.length;i++) {
 		var c = thingstoDo.charAt(i);
 		applyBehavior(c);
 	}
 	//Change Color based on Affection
-	if (Xind <= 1){
+	if (Yind <= 1){
 		changeColor(dot.shape,255,0,0);
 	}
-	else if (Xind == 3 || Xind == 12){
-		changeColor(dot.shape,0,255,0);
+	else if (Yind == 3 || Yind == 2){
+		changeColor(dot.shape,0,0,255);
 	}
 	else{
-		changeColor(dot.shape,0,0,255);
+		changeColor(dot.shape,0,255,0);
 	}
 }
 
 updateBehavior();
-blinkId = setInterval(function(){blink();},6000);
+blinkId = setInterval(function(){blink();},3000);
 dot.shape.addEventListener("mouseover",function(){if (affection < 100){affection+=1}});
-setInterval(function(){if(energy >0){energy -= 1;}; if(affection >0){affection -= 1};updateBehavior()},600);
+setInterval(function(){if(energy >0){energy -= 1;}; if(affection >0){affection -= 1};updateBehavior()},1000);
+setInterval(function(){if(energy <96 && sleeping){energy += 1}},200);

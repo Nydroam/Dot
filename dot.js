@@ -1,11 +1,18 @@
 var vimg = document.getElementById("vimg");
 var bg = document.getElementById("background");
-var energy = rest/10;
+/*var energy = rest/10;
+localStorage.affection = 50;
+console.log(localStorage.affection);
+localStorage.rest = energy;
 setInterval(function() {
 	localStorage.affection = 50;
-	affection = localStorage.affection;
 	localStorage.rest = energy;
 },60000);
+
+affection = localStorage.affection;*/
+
+affection = 50;
+energy = 20;
 var animLocks = {
 	eyesAnimating:false,
 	bodyAnimating:false
@@ -59,7 +66,7 @@ function resize(){
 	vimg.setAttribute("height","100%");
 	vimg.setAttribute("width","100%");
 	animLocks.bodyAnimating = false;
-	dot.y = window.innerHeight - dot.dotyrad - 10;
+	dot.y = window.innerHeight - dot.dotyrad - 100;
 	dot.draw();
 	
 	
@@ -67,4 +74,4 @@ function resize(){
 
 resize();
 window.addEventListener("resize", resize);
-affection = localStorage.affection;
+//affection = localStorage.affection;
