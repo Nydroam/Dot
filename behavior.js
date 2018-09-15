@@ -28,21 +28,18 @@ var resetterA = {
 var updateBehavior = function(){
 	//Clear intervals
 	if( energy <= 0){
-			resetterA[currBehaviorA]();
 	resetterE[currBehaviorE]();
 		currBehaviorE = 0;
 		//Sleep 0
 	}
 	else if (energy > 30){
-			resetterA[currBehaviorA]();
 	resetterE[currBehaviorE]();
 		currBehaviorE = 1;
 		vimg.addEventListener("mousemove",followMouse);
 		//Energetic Behavior 1
 	}
 	if(affection > 20){
-			resetterA[currBehaviorA]();
-	resetterE[currBehaviorE]();
+		resetterA[currBehaviorA]();
 		currBehaviorA=0;
 		randColor = true;
 		changeColor(dot.shape,0,255,0);
@@ -50,14 +47,13 @@ var updateBehavior = function(){
 	}
 	else if (affection < 0){
 			resetterA[currBehaviorA]();
-	resetterE[currBehaviorE]();
 		currBehaviorA = 1;
 		changeColor(dot.shape,255,0,0);
 		//Angry Behavior 1
 	}
 	if(currBehaviorA == 5 && currBehaviorE == 5){
-			resetterA[currBehaviorA]();
-	resetterE[currBehaviorE]();
+		resetterA[currBehaviorA]();
+		resetterE[currBehaviorE]();
 		currBehaviorE = 5;
 		currBehaviorA = 5;
 		basicBehavior();
