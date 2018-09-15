@@ -97,5 +97,5 @@ var followMouse = function(e){
 	setMousePosition(e);
 	dotFollow();
 }
-//vimg.addEventListener("mousemove",followMouse,false);
+vimg.addEventListener("mousemove",followMouse,false);
 //vimg.addEventListener("click",randMove);

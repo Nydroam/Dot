@@ -17,9 +17,9 @@ function calculateIncrement(distanceArray, fps, duration) {
 	var increment	= [];
 	for (var i = 0; i < distanceArray.length; i++) {
 		var incr = Math.abs(Math.floor(distanceArray[i] / (fps * duration)));
-		if (incr == 0) {
-			incr = 1;
-		}
+		//if (incr == 0) {
+		//	incr = 1;
+		//}
 		increment.push(incr);
 	}
 	return increment;
@@ -99,8 +99,9 @@ var changeColor = function(shape,r,g,b){
 	
 	distance	= calculateDistance(currentColor, targetColor);
 	increment	= calculateIncrement(distance, fps, duration);
+	console.log(increment);
 	transHandler = setInterval(function() {
 		transition(shape);
 	}, 1000/fps);
 }
-changeColor(dot.shape,255,0,0);
+changeColor(dot.shape,255,0,255);
