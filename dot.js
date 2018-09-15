@@ -11,6 +11,8 @@ function setEllipse(shape,cx,cy,rx,ry,fill){
 var dot = {
 	x: window.innerWidth/2,
 	y: window.innerHeight/2,
+	dotxrad: 200,
+	dotyrad: 170,
 	LExOffset: -50,
 	LExradius: 15,
 	LEyradius: 30,

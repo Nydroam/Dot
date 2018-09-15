@@ -2,6 +2,29 @@ var animLocks = {
 	eyesAnimating:false,
 	bodyAnimating:false
 }
+var animateDot = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget,rychange,rytarget, trigger){
+	var done = true;
+	if(dot.y != ytarget){
+		dot.y = dot.y + ychange;
+		done = false;
+	}
+	if(dot.x != xtarget){
+		dot.x = dot.x + xchange;
+		done = false;
+	}
+	if(dot.dotyrad != rytarget){
+		dot.dotyrad = dot.dotyrad + rychange;
+		done = false;
+	}
+	if(dot.dotxrad != rxtarget){
+		dot.dotxrad = dot.dotxrad + rxchange;
+		done = false;
+	}
+	if(done){
+		trigger.trigger = true;
+	}
+	dot.draw();
+}
 var animateLeftEye = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget,rychange,rytarget, trigger){
 	var done = true;
 	if(dot.LEyOffset != ytarget){
@@ -44,7 +67,6 @@ var animateRightEye = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget
 		done = false;
 	}
 	if(done){
-		console.log("done");
 		trigger.trigger = true;
 	}
 	dot.draw();
