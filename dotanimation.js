@@ -1,7 +1,7 @@
 var mouseX = 0;
 var mouseY = 0;
 var followid;
-
+var followidVert;
 function setMousePosition(e) {
 	mouseX = e.clientX;
 	mouseY = e.clientY;
