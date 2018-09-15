@@ -4,7 +4,7 @@ var followid;
 var followidVert;
 var currrad = dot.dotyrad;
 var currypos = dot.y;
-var moving = false;
+var movingVert = false;
 var randID;
 function setMousePosition(e) {
 	mouseX = e.clientX;
@@ -51,6 +51,10 @@ var dotFollow = function(){
 
 function moveVert(){
 	if(animLocks.bodyAnimating){
+		if(movingVert){
+			return;
+		}
+		movingVert = true;
 		var trig = {
 			trigger:false
 		}
@@ -65,8 +69,8 @@ function moveVert(){
 					if(trig.trigger){
 					clearInterval(trigger);
 					clearInterval(followidVert);
-					moving = false;
 					trig.trigger = false;
+					movingVert = false;
 				if(animLocks.bodyAnimating){
 					moveVert();
 				}

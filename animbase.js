@@ -1,7 +1,4 @@
-var animLocks = {
-	eyesAnimating:false,
-	bodyAnimating:false
-}
+
 var animateDot = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget,rychange,rytarget, trigger){
 	var done = true;
 	if(dot.y != ytarget && (dot.y+ychange + dot.dotyrad) <= window.innerHeight && (dot.y+ychange - dot.dotyrad) >= 0){

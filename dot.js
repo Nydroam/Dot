@@ -2,6 +2,10 @@ var vimg = document.getElementById("vimg");
 var bg = document.getElementById("background");
 var affection = 0;
 var energy = 50;
+var animLocks = {
+	eyesAnimating:false,
+	bodyAnimating:false
+}
 function setEllipse(shape,cx,cy,rx,ry,fill){
 	shape.setAttribute("cx",cx);
 	shape.setAttribute("cy",cy);
@@ -50,7 +54,7 @@ function resize(){
 
 	vimg.setAttribute("height","100%");
 	vimg.setAttribute("width","100%");
-	
+	animLocks.bodyAnimating = false;
 	dot.y = window.innerHeight - dot.dotyrad - 10;
 	dot.draw();
 	
