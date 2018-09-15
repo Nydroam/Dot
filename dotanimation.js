@@ -12,6 +12,10 @@ function setMousePosition(e) {
 }
 
 var dotFollow = function(){
+	if(animLocks.bodyAnimating){
+		return;
+	}
+	animLocks.bodyAnimating = true;
 	clearInterval(randID);
 	clearInterval(followid);
 	var xchange;
@@ -24,6 +28,8 @@ var dotFollow = function(){
 	}
 	else{
 		xchange = 0;
+		animLocks.bodyAnimating = false;
+		clearInterval(followid);
 		return;
 	}
 
@@ -36,14 +42,15 @@ var dotFollow = function(){
 	}
 	else{
 		xchange = 0;
+		animLocks.bodyAnimating = false;
+		clearInterval(followid);
 		return;
 	}animateDot(xchange,mouseX,0,dot.y,0,dot.dotxrad,0,dot.dotyrad,false)},10);
-	moveVert();
+	moveVert(true);
 }
 
 function moveVert(){
-	if(!moving){
-		moving = true;
+	if(animLocks.bodyAnimating){
 		var trig = {
 			trigger:false
 		}
@@ -60,8 +67,9 @@ function moveVert(){
 					clearInterval(followidVert);
 					moving = false;
 					trig.trigger = false;
-
-					dotFollow();
+				if(animLocks.bodyAnimating){
+					moveVert();
+				}
 				}
 				},30);
 			};
@@ -71,19 +79,35 @@ function moveVert(){
 	}
 }
 function randMove(){
-	clearInterval(randID);
-	var randWidth = Math.round(Math.random()*(window.innerWidth - (3*dot.dotxrad)) + dot.dotxrad);
-	var xchange;
-	if (randWidth > dot.x + 50){
-		xchange = 2;
+	if(animLocks.bodyAnimating){
+		return;
 	}
-	else if (randWidth < dot.x - 50){
-		xchange = -2;
+	animLocks.bodyAnimating = true;
+	clearInterval(randID);
+	var randWidth = Math.round(Math.random()*(window.innerWidth - (4*dot.dotxrad)) + 2*dot.dotxrad);
+	console.log(randWidth);
+	var xchange;
+	if (randWidth > dot.x + 5){
+		xchange = 1;
+	}
+	else if (randWidth < dot.x - 5){
+		xchange = -1;
 	}
 	else{
 		xchange = 0;
 	}
-	randID = setInterval(function(){animateDot(xchange,randWidth,0,dot.y,0,dot.dotxrad,0,dot.dotyrad,false)},10);
+	
+	randID = setInterval(function(){animateDot(xchange,randWidth,0,dot.y,0,dot.dotxrad,0,dot.dotyrad,trigger)},10);
+
+	trigger = {
+		trigger:false
+	}
+	end = setInterval(function(){if (trigger.trigger){
+		clearInterval(randID);
+		animLocks.bodyAnimating = false;
+	}
+},10);
+	moveVert();
 }
 var followMouse = function(e){
 	setMousePosition(e);

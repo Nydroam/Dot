@@ -7,10 +7,10 @@ var moving1 = false;
 
 
 var eyeDart = function(x1,y1,x2,y2){
-	if(moving1){
+	if(animLocks.eyesAnimating){
 		return;
 	}
-	moving1 = true;
+	animLocks.eyesAnimating = true;
 	var LExDiff = x1 - OLExOffset;
 	var LEyDiff = y1 - OLEyOffset;
 
@@ -50,16 +50,12 @@ var eyeDart = function(x1,y1,x2,y2){
 			clearInterval(triggerl);
 			clearInterval(animlid);
 			clearInterval(animrid);
-			moving1 = false;
+			animLocks.eyesAnimating = false;
 		}
 	},20);
 	}
 }
 
-var returnHome = function(){
-	eyeDart(OLExOffset,OLEyOffset,ORExOffset,OREyOffset);
-
-}
 var closeEyes= function( wink ){
 	var rand = Math.random()*2;
 	if(!animLocks.eyesAnimating){
@@ -79,7 +75,7 @@ var closeEyes= function( wink ){
 			clearInterval(animlid);
 			leftTrigger.trigger = false;
 			animlid = setInterval(function(){if(wink){
-				setTimeout(function(){animateLeftEye(0,dot.LExOffset,-1,currypos,0,dot.LExradius,1,30,leftTrigger)},200)
+				setTimeout(function(){animateLeftEye(0,dot.LExOffset,-1,currypos,0,dot.LExradius,1,30,leftTrigger)},100)
 			}
 			else{
 				animateLeftEye(0,dot.LExOffset,-1,currypos,0,dot.LExradius,1,30,leftTrigger)
@@ -132,14 +128,26 @@ function setMousePosition(e) {
 	mouseY = e.clientY;
 }
 
-var blink = function(){
+function blink(){
 	closeEyes(false);
 }
-var wink = function(){
+function wink(){
 	closeEyes(true);
 }
 
 var eyeFollowMouse = function(e){
 	setMousePosition(e);
 	eyeDart(mouseX-(dot.x +OLExOffset),mouseY-(dot.y + OLEyOffset),mouseX-(dot.x + ORExOffset),mouseY-(dot.y + OREyOffset));
+}
+
+var blinkOrWink = function(){
+	if(animLocks.eyesAnimating){
+		return;
+	}
+	if (Math.random()<0.8){
+		blink();
+	}
+	else{
+		wink();
+	}
 }

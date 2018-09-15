@@ -32,9 +32,9 @@ var dot = {
 		
 		setEllipse(this.shape,this.x,this.y,this.dotxrad,this.dotyrad,"blue");
 		setEllipse(this.leftEye,this.x + this.LExOffset, this.y + this.LEyOffset,this.LExradius,this.LEyradius,"black");
-		setEllipse(this.leftShine,this.x + this.LExOffset + this.LExradius/2, this.y + this.LEyOffset - this.LEyradius/4,this.LExradius/3,this.LEyradius/2,"white");
+		setEllipse(this.leftShine,this.x + this.LExOffset + this.LExradius/2, this.y + this.LEyOffset - this.LEyradius/4,this.LExradius/3,this.LEyradius/3,"white");
 		setEllipse(this.rightEye,this.x + this.RExOffset, this.y + this.REyOffset,this.RExradius,this.REyradius,"black");
-		setEllipse(this.rightShine,this.x + this.RExOffset + this.RExradius/2, this.y + this.REyOffset - this.REyradius/4,this.RExradius/3,this.REyradius/2,"white");
+		setEllipse(this.rightShine,this.x + this.RExOffset + this.RExradius/2, this.y + this.REyOffset - this.REyradius/4,this.RExradius/3,this.REyradius/3,"white");
 	}
 
 }
@@ -47,7 +47,7 @@ vimg.appendChild(dot.rightShine);
 
 
 function resize(){
-	
+
 	vimg.setAttribute("height","100%");
 	vimg.setAttribute("width","100%");
 	
