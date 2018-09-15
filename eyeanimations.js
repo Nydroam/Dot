@@ -35,7 +35,6 @@ var eyeDart = function(x1,y1,x2,y2){
 	else{
 	RExDiff = Math.round(RExDiff/REdist)*5;
 	REyDiff = Math.round(REyDiff/REdist)*5;
-}	console.log(Math.round(LExDiff/10));
 	var i;
 
 	var leftTrigger = {
@@ -48,7 +47,6 @@ var eyeDart = function(x1,y1,x2,y2){
 	var animrid = setInterval(function(){animateRightEye(Math.round(RExDiff/5),ORExOffset + RExDiff,Math.round(REyDiff/5),OREyOffset + REyDiff,0,dot.RExradius,0,dot.REyradius, rightTrigger)},8);
 	var triggerl = setInterval(function(){
 		if(leftTrigger.trigger && rightTrigger.trigger){
-			console.log("stopped");
 			clearInterval(triggerl);
 			clearInterval(animlid);
 			clearInterval(animrid);
@@ -56,10 +54,11 @@ var eyeDart = function(x1,y1,x2,y2){
 		}
 	},20);
 	}
+}
 
 var returnHome = function(){
 	eyeDart(OLExOffset,OLEyOffset,ORExOffset,OREyOffset);
-	console.log("home");
+
 }
 var closeEyes= function( wink ){
 	var rand = Math.random()*2;
@@ -140,10 +139,7 @@ var wink = function(){
 	closeEyes(true);
 }
 
-var followMouse = function(e){
+var eyeFollowMouse = function(e){
 	setMousePosition(e);
 	eyeDart(mouseX-(dot.x +OLExOffset),mouseY-(dot.y + OLEyOffset),mouseX-(dot.x + ORExOffset),mouseY-(dot.y + OREyOffset));
 }
-
-vimg.addEventListener("click",returnHome);
-vimg.addEventListener("mousemove",followMouse);

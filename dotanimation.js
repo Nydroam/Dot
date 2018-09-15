@@ -26,15 +26,6 @@ var dotFollow = function(){
 		xchange = 0;
 		return;
 	}
-	/*if (mouseY > dot.y){
-		ychange = 1;
-	}
-	else if (mouseY < dot.y){
-		ychange = -1;
-	}
-	else{
-		ychange = 0;
-	}*/
 
 	followid = setInterval(function(){
 		if (mouseX > dot.x + 5){
@@ -98,5 +89,3 @@ var followMouse = function(e){
 	setMousePosition(e);
 	dotFollow();
 }
-vimg.addEventListener("mousemove",followMouse,false);
-//vimg.addEventListener("click",randMove);

@@ -33,17 +33,14 @@ var animateLeftEye = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget,
 		done = false;
 	}
 	if(dot.LExOffset != xtarget && xchange != 0){
-		console.log("x change");
 		dot.LExOffset = dot.LExOffset + xchange;
 		done = false;
 	}
 	if(dot.LEyradius != rytarget && rychange != 0){
-		console.log("rady change");
 		dot.LEyradius = dot.LEyradius + rychange;
 		done = false;
 	}
 	if(dot.LExradius != rxtarget && rxchange != 0){
-		console.log("radius change");
 		dot.LExradius = dot.LExradius + rxchange;
 		done = false;
 	}

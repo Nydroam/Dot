@@ -107,4 +107,3 @@ var changeColor = function(shape,r,g,b){
 		transition(shape);
 	}, 1000/fps);
 }
-changeColor(dot.shape,255,0,255);

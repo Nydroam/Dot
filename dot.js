@@ -1,5 +1,7 @@
 var vimg = document.getElementById("vimg");
 var bg = document.getElementById("background");
+var affection = 0;
+var energy = 50;
 function setEllipse(shape,cx,cy,rx,ry,fill){
 	shape.setAttribute("cx",cx);
 	shape.setAttribute("cy",cy);
@@ -45,9 +47,14 @@ vimg.appendChild(dot.rightShine);
 
 
 function resize(){
+	vimg.removeEventListener("mousemove",followMouse);
 	vimg.setAttribute("height","100%");
 	vimg.setAttribute("width","100%");
+	
+	dot.y = window.innerHeight - dot.dotyrad - 10;
 	dot.draw();
+	
+	
 }
 
 resize();
