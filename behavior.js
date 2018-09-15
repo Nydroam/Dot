@@ -62,5 +62,5 @@ var updateBehavior = function(){
 
 updateBehavior();
 blinkId = setInterval(function(){blink();},6000);
-dot.shape.addEventListener("mouseover",function(){affection+=1});
-setInterval(function(){energy -= 1; if(affection >0){affection -= 1};updateBehavior()},600);
+dot.shape.addEventListener("mouseover",function(){if (affection < 100){affection+=1}});
+setInterval(function(){if(energy >0){energy -= 1;}; if(affection >0){affection -= 1};updateBehavior()},600);
