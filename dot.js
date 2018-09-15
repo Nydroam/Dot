@@ -3,6 +3,7 @@ var bg = document.getElementById("background");
 var energy = rest/10;
 setInterval(function() {
 	localStorage.affection = 50;
+	affection = localStorage.affection;
 	localStorage.rest = energy;
 },60000);
 var animLocks = {
@@ -66,3 +67,4 @@ function resize(){
 
 resize();
 window.addEventListener("resize", resize);
+affection = localStorage.affection;

@@ -41,7 +41,7 @@ var updateBehavior = function(){
 	console.log(affection);
 	cleanBehavior();
 	var Yind = Math.round(energy/19.5);
-	var Xind = affection/25;
+	var Xind = Math.round(affection/25);
 	var thingstoDo = BehaviorChart[Xind][5-Yind];
 	var i = 0;
 	for(i=0;i < thingstoDo.length;i++) {
@@ -52,7 +52,7 @@ var updateBehavior = function(){
 	if (Xind <= 1){
 		changeColor(dot.shape,255,0,0);
 	}
-	else if (Xind <= 3 && Xind > 1){
+	else if (Xind == 3 || Xind == 12){
 		changeColor(dot.shape,0,255,0);
 	}
 	else{
@@ -61,4 +61,6 @@ var updateBehavior = function(){
 }
 
 updateBehavior();
-setInterval(function(){updateBehavior()},600);
+blinkId = setInterval(function(){blink();},6000);
+dot.shape.addEventListener("mouseover",function(){affection+=1});
+setInterval(function(){energy -= 1; if(affection >0){affection -= 1};updateBehavior()},600);
