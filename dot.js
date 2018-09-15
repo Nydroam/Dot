@@ -1,7 +1,7 @@
 var vimg = document.getElementById("vimg");
 var bg = document.getElementById("background");
-var affection = 0;
-var energy = 50;
+var affection = 30;
+var energy = 30;
 var animLocks = {
 	eyesAnimating:false,
 	bodyAnimating:false
