@@ -1,14 +1,36 @@
 function retrieve() {
 	//retrieve local storage if it exists
-	if (localStorage.rest && localStorage.time && 
-		localStorage.affection) {
-		var old_rest = localStorage.rest;
-		var old_time = localStorage.time;
-		var old_affe = localStorage.affection;
-		var old_hour = localStorage.hour;
-		var old_minute = localStorage.minutes;
-		updateStatus(old_rest,old_time,old_affe,
-			old_hour,old_minute);
+	if (localStorage.rest !== "undefined" && 
+		localStorage.time !== "undefined") {
+		rest = Number(localStorage.rest);
+		time = Number(localStorage.time);
+		affe = Number(localStorage.affection);
+		hour = Number(localStorage.hour);
+		minutes = Number(localStorage.minutes);
+
+		/*console.log(rest);
+		console.log(time);
+		console.log(affection);
+		console.log(hour);
+		console.log(minutes);*/
+		updateStatus(rest,time,affe,
+			hour,minutes);
+	} else {
+		if (typeof(Storage) !== "undefined") {
+			date = new Date();
+			rest = 960;
+			time = date.getTime();
+			hour = date.getHours();
+			minutes = date.getMinutes();
+			affection = 1000;
+
+			localStorage.rest = rest;
+		    localStorage.time = time;
+		    localStorage.affection = affection;
+		    localStorage.hour = hour;
+		    localStorage.minutes = minutes;
+		    console.log(localStorage.rest);
+		}
 	}
 }
 
@@ -69,29 +91,34 @@ function updateStatus(o_rest,o_time,o_affection,o_hours,o_minutes) {
 		}
 	}
 	timeAsleep = timelapse - timeAwake;
+	//affection = affection - timeAwake;
+	//rest = rest + 2 * timeAsleep - timeAwake;
 }
 
-function store() {
+window.onbeforeunload = function store() {
 	//to be called when webpage is closed
 	if (typeof(Storage) !== "undefined") {
 	    // Code for localStorage/sessionStorage.
-	    localStorage.setItem("rest",rest);
-	    localStorage.setItem("time",time);
-	    localStorage.setItem("affection",affection);
-	    localStorage.setItem("hour",hour);
-	    localStorage.setItem("minutes",minutes);
+	    localStorage.rest = rest;
+	    localStorage.time = time;
+	    localStorage.affection = affection;
+	    localStorage.hour = hour;
+	    localStorage.minutes = minutes;
 	} else {
-	    // Sorry! No Web Storage support..
+	    // No Web Storage support
 	}
 }
-var date = new Date();
-date.setTime(date.getTime() - 43200000);
-var rest = 960;
-var time = date.getTime();
-var hour = date.getHours();
-var minutes = date.getMinutes();
-var affection = 100;
+console.log(localStorage.rest);
+var date;
+var rest;
+var time;
+var hour;
+var minutes;
+var affection;
 var sleepTime = 1320; //22
 var wakeTime = 360; //6
-store();
 retrieve();
+/*console.log(date);
+console.log(rest);
+console.log(time);
+console.log(affection);*/
