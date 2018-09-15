@@ -32,57 +32,14 @@ var dot = {
 vimg.appendChild(dot.shape);
 vimg.appendChild(dot.leftEye);
 vimg.appendChild(dot.rightEye);
-var animateLeftEye = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget,rychange,rytarget){
-	if(dot.LEyOffset != ytarget){
-		dot.LEyOffset = dot.LEyOffset + ychange;
-	}
-	if(dot.LExOffset != xtarget){
-		dot.LExOffset = dot.LExOffset + xchange;
-	}
-	if(dot.LEyradius != rytarget){
-		dot.LEyradius = dot.LEyradius + rychange;
-	}
-	if(dot.LExradius != rxtarget){
-		dot.LExradius = dot.LExradius + rxchange;
-	}
-	dot.draw();
-}
-var animateRightEye = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget,rychange,rytarget){
-	if(dot.REyOffset != ytarget){
-		dot.REyOffset = dot.REyOffset + ychange;
-	}
-	if(dot.RExOffset != xtarget){
-		dot.RExOffset = dot.RExOffset + xchange;
-	}
-	if(dot.REyradius != rytarget){
-		dot.REyradius = dot.REyradius + rychange;
-	}
-	if(dot.RExradius != rxtarget){
-		dot.RExradius = dot.RExradius + rxchange;
-	}
-	dot.draw();
-}
-var blink = function(){
-	console.log("blingking");
-	var currypos = dot.LEyOffset;
-	var animlid = setInterval(function(){animateLeftEye(0,dot.LExOffset,1,currypos+29,0,dot.LExradius,-1,1)},25);
-	var animrid = setInterval(function(){animateRightEye(0,dot.RExOffset,1,currypos+29,0,dot.RExradius,-1,1)},25);
-	
-	clearInterval(animlid);
-	clearInterval(animrid);
-	currypos = dot.LEyOffset;
-	animlid = setInterval(function(){animateLeftEye(0,dot.LExOffset,-1,currypos-29,0,dot.LExradius,1,30)},25);
-	animrid = setInterval(function(){animateRightEye(0,dot.RExOffset,-1,currypos-29,0,dot.RExradius,1,30)},25);
-	while(dot.Leyradius < 30){
-	}
-	clearInterval(animlid);
-	clearInterval(animrid);
-}
+
+
+
 function resize(){
 	vimg.setAttribute("height","100%");
 	vimg.setAttribute("width","100%");
 	dot.draw();
 }
-dot.shape.addEventListener("click",blink);
+
 resize();
 window.addEventListener("resize", resize);
