@@ -1,4 +1,66 @@
 
+var OLExOffset = dot.LExOffset;
+var OLEyOffset = dot.LEyOffset;
+var ORExOffset = dot.RExOffset;
+var OREyOffset = dot.REyOffset;
+var moving1 = false;
+
+
+var eyeDart = function(x1,y1,x2,y2){
+	if(moving1){
+		return;
+	}
+	moving1 = true;
+	var LExDiff = x1 - OLExOffset;
+	var LEyDiff = y1 - OLEyOffset;
+
+	var LEdist = Math.sqrt(LExDiff * LExDiff + LEyDiff * LEyDiff);
+	if(LEdist == 0){
+		LExDiff = 0;
+		LEyDiff = 0;
+	}
+	else{
+	LExDiff = Math.round(LExDiff/LEdist)*5;
+	LEyDiff = Math.round(LEyDiff/LEdist)*5;
+}
+
+	var RExDiff = x2 - ORExOffset;
+	var REyDiff = y2 - OREyOffset;
+	var REdist = Math.sqrt(RExDiff * RExDiff + REyDiff * REyDiff);
+
+	if(REdist == 0){
+	RExDiff = 0;
+	REyDiff = 0;
+	}
+	else{
+	RExDiff = Math.round(RExDiff/REdist)*5;
+	REyDiff = Math.round(REyDiff/REdist)*5;
+}	console.log(Math.round(LExDiff/10));
+	var i;
+
+	var leftTrigger = {
+		trigger:false
+	};
+	var rightTrigger = {
+		trigger:false
+	};
+	var animlid = setInterval(function(){animateLeftEye(Math.round(LExDiff/5),OLExOffset + LExDiff,Math.round(LEyDiff/5),OLEyOffset + LEyDiff,0,dot.LExradius,0,dot.LEyradius, leftTrigger)},8);
+	var animrid = setInterval(function(){animateRightEye(Math.round(RExDiff/5),ORExOffset + RExDiff,Math.round(REyDiff/5),OREyOffset + REyDiff,0,dot.RExradius,0,dot.REyradius, rightTrigger)},8);
+	var triggerl = setInterval(function(){
+		if(leftTrigger.trigger && rightTrigger.trigger){
+			console.log("stopped");
+			clearInterval(triggerl);
+			clearInterval(animlid);
+			clearInterval(animrid);
+			moving1 = false;
+		}
+	},20);
+	}
+
+var returnHome = function(){
+	eyeDart(OLExOffset,OLEyOffset,ORExOffset,OREyOffset);
+	console.log("home");
+}
 var closeEyes= function( wink ){
 	var rand = Math.random()*2;
 	if(!animLocks.eyesAnimating){
@@ -64,10 +126,24 @@ var closeEyes= function( wink ){
 	}
 	
 }
+var mouseX;
+var mouseY;
+function setMousePosition(e) {
+	mouseX = e.clientX;
+	mouseY = e.clientY;
+}
+
 var blink = function(){
 	closeEyes(false);
 }
 var wink = function(){
 	closeEyes(true);
 }
-dot.shape.addEventListener("click",blink);
+
+var followMouse = function(e){
+	setMousePosition(e);
+	eyeDart(mouseX-(dot.x +OLExOffset),mouseY-(dot.y + OLEyOffset),mouseX-(dot.x + ORExOffset),mouseY-(dot.y + OREyOffset));
+}
+
+vimg.addEventListener("click",returnHome);
+vimg.addEventListener("mousemove",followMouse);

@@ -28,19 +28,21 @@ var animateDot = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget,rych
 }
 var animateLeftEye = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget,rychange,rytarget, trigger){
 	var done = true;
-	if(dot.LEyOffset != ytarget){
+	if(dot.LEyOffset != ytarget && ychange != 0){
 		dot.LEyOffset = dot.LEyOffset + ychange;
 		done = false;
 	}
-	if(dot.LExOffset != xtarget){
+	if(dot.LExOffset != xtarget && xchange != 0){
+		console.log("x change");
 		dot.LExOffset = dot.LExOffset + xchange;
 		done = false;
 	}
-	if(dot.LEyradius != rytarget){
+	if(dot.LEyradius != rytarget && rychange != 0){
+		console.log("rady change");
 		dot.LEyradius = dot.LEyradius + rychange;
 		done = false;
 	}
-	if(dot.LExradius != rxtarget){
+	if(dot.LExradius != rxtarget && rxchange != 0){
 		console.log("radius change");
 		dot.LExradius = dot.LExradius + rxchange;
 		done = false;
@@ -52,19 +54,19 @@ var animateLeftEye = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget,
 }
 var animateRightEye = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget,rychange,rytarget, trigger){
 	var done = true;
-	if(dot.REyOffset != ytarget){
+	if(dot.REyOffset != ytarget && ychange != 0){
 		dot.REyOffset = dot.REyOffset + ychange;
 		done = false;
 	}
-	if(dot.RExOffset != xtarget){
+	if(dot.RExOffset != xtarget && xchange != 0){
 		dot.RExOffset = dot.RExOffset + xchange;
 		done = false;
 	}
-	if(dot.REyradius != rytarget){
+	if(dot.REyradius != rytarget && rychange != 0){
 		dot.REyradius = dot.REyradius + rychange;
 		done = false;
 	}
-	if(dot.RExradius != rxtarget){
+	if(dot.RExradius != rxtarget && rxchange != 0){
 		dot.RExradius = dot.RExradius + rxchange;
 		done = false;
 	}
