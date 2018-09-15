@@ -56,7 +56,6 @@ function moveVert(){
 		}
 	followidVert = setInterval(function(){animateDot(0,dot.x,1,currypos+10,0,dot.dotxrad,-1,currrad-10,trig)},30);
 	var trigger = setInterval(function(){
-		console.log(trig.trigger);
 			if(trig.trigger){
 				clearInterval(followidVert);
 				clearInterval(trigger);
@@ -93,12 +92,10 @@ function randMove(){
 		xchange = 0;
 	}
 	randID = setInterval(function(){animateDot(xchange,randWidth,0,dot.y,0,dot.dotxrad,0,dot.dotyrad,false)},10);
-	console.log(randWidth);
-	console.log(dot.x);
 }
 var followMouse = function(e){
 	setMousePosition(e);
 	dotFollow();
 }
 //vimg.addEventListener("mousemove",followMouse,false);
-vimg.addEventListener("click",randMove);
+//vimg.addEventListener("click",randMove);
