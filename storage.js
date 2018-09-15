@@ -30,6 +30,10 @@ function retrieve() {
 		    localStorage.hour = hour;
 		    localStorage.minutes = minutes;
 		    console.log(localStorage.rest);
+		    console.log(localStorage.time);
+		    console.log(localStorage.affection);
+		    console.log(localStorage.hour);
+		    console.log(localStorage.minutes);
 		}
 	}
 }
@@ -99,7 +103,7 @@ window.onbeforeunload = function store() {
 	//to be called when webpage is closed
 	if (typeof(Storage) !== "undefined") {
 	    // Code for localStorage/sessionStorage.
-	    localStorage.rest = rest;
+	    localStorage.rest = parseInt(rest)+1;
 	    localStorage.time = time;
 	    localStorage.affection = affection;
 	    localStorage.hour = hour;
@@ -109,6 +113,7 @@ window.onbeforeunload = function store() {
 	}
 }
 console.log(localStorage.rest);
+
 var date;
 var rest;
 var time;
