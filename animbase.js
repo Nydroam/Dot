@@ -17,6 +17,7 @@ var animateLeftEye = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget,
 		done = false;
 	}
 	if(dot.LExradius != rxtarget){
+		console.log("radius change");
 		dot.LExradius = dot.LExradius + rxchange;
 		done = false;
 	}
