@@ -70,4 +70,4 @@ var blink = function(){
 var wink = function(){
 	closeEyes(true);
 }
-dot.shape.addEventListener("click",wink);
+dot.shape.addEventListener("click",blink);

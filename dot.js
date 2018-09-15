@@ -10,7 +10,7 @@ function setEllipse(shape,cx,cy,rx,ry,fill){
 
 var dot = {
 	x: window.innerWidth/2,
-	y: window.innerHeight/2,
+	y: window.innerHeight/4 * 3,
 	LExOffset: -50,
 	LExradius: 15,
 	LEyradius: 30,
@@ -22,16 +22,23 @@ var dot = {
 	shape: document.createElementNS("http://www.w3.org/2000/svg","ellipse"),
 	leftEye: document.createElementNS("http://www.w3.org/2000/svg","ellipse"),
 	rightEye: document.createElementNS("http://www.w3.org/2000/svg","ellipse"),
+	leftShine : document.createElementNS("http://www.w3.org/2000/svg","ellipse"),
+	rightShine : document.createElementNS("http://www.w3.org/2000/svg","ellipse"),
 	draw: function(){
+		
 		setEllipse(this.shape,this.x,this.y,200,170,"blue");
 		setEllipse(this.leftEye,this.x + this.LExOffset, this.y + this.LEyOffset,this.LExradius,this.LEyradius,"black");
+		setEllipse(this.leftShine,this.x + this.LExOffset + this.LExradius/2, this.y + this.LEyOffset - this.LEyradius/4,this.LExradius/3,this.LEyradius/2,"white");
 		setEllipse(this.rightEye,this.x + this.RExOffset, this.y + this.REyOffset,this.RExradius,this.REyradius,"black");
+		setEllipse(this.rightShine,this.x + this.RExOffset + this.RExradius/2, this.y + this.REyOffset - this.REyradius/4,this.RExradius/3,this.REyradius/2,"white");
 	}
 
 }
 vimg.appendChild(dot.shape);
 vimg.appendChild(dot.leftEye);
 vimg.appendChild(dot.rightEye);
+vimg.appendChild(dot.leftShine);
+vimg.appendChild(dot.rightShine);
 
 
 
