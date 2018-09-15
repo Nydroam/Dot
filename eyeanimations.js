@@ -17,7 +17,12 @@ var closeEyes= function( wink ){
 			clearInterval(triggerl);
 			clearInterval(animlid);
 			leftTrigger.trigger = false;
-			animlid = setInterval(function(){animateLeftEye(0,dot.LExOffset,-1,currypos,0,dot.LExradius,1,30,leftTrigger)},8);
+			animlid = setInterval(function(){if(wink){
+				setTimeout(function(){animateLeftEye(0,dot.LExOffset,-1,currypos,0,dot.LExradius,1,30,leftTrigger)},200)
+			}
+			else{
+				animateLeftEye(0,dot.LExOffset,-1,currypos,0,dot.LExradius,1,30,leftTrigger)
+			}},8);
 			triggerl = setInterval(function(){
 		if(leftTrigger.trigger){
 			
@@ -37,7 +42,12 @@ var closeEyes= function( wink ){
 			clearInterval(animrid);
 			leftTrigger.trigger = false;
 			rightTrigger.trigger = false;
-			animrid = setInterval(function(){animateRightEye(0,dot.RExOffset,-1,currypos,0,dot.RExradius,1,30,rightTrigger)},8);
+			animrid = setInterval(function(){if(wink){
+				setTimeout(function(){animateRightEye(0,dot.RExOffset,-1,currypos,0,dot.RExradius,1,30,rightTrigger)},200)
+			}
+			else{
+				animateRightEye(0,dot.RExOffset,-1,currypos,0,dot.RExradius,1,30,rightTrigger)
+			}},8);
 			triggerr = setInterval(function(){
 		if(rightTrigger.trigger){
 			clearInterval(triggerr);
