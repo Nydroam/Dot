@@ -78,9 +78,27 @@ function moveVert(){
 	
 	}
 }
-
+var randID;
+function randMove(){
+	clearInterval(randID);
+	var randWidth = Math.round(Math.random()*(window.innerWidth - (3*dot.dotxrad)) + dot.dotxrad);
+	var xchange;
+	if (randWidth > dot.x + 50){
+		xchange = 2;
+	}
+	else if (randWidth < dot.x - 50){
+		xchange = -2;
+	}
+	else{
+		xchange = 0;
+	}
+	randID = setInterval(function(){animateDot(xchange,randWidth,0,dot.y,0,dot.dotxrad,0,dot.dotyrad,false)},10);
+	console.log(randWidth);
+	console.log(dot.x);
+}
 var followMouse = function(e){
 	setMousePosition(e);
 	dotFollow();
 }
-vimg.addEventListener("mousemove",followMouse,false);
+//vimg.addEventListener("mousemove",followMouse,false);
+vimg.addEventListener("click",randMove);
