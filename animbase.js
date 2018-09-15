@@ -4,7 +4,7 @@ var animLocks = {
 }
 var animateDot = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget,rychange,rytarget, trigger){
 	var done = true;
-	ifif(dot.y != ytarget && (dot.y+ychange + dot.dotyrad) <= window.innerHeight && (dot.y+ychange - dot.dotyrad) >= 0){
+	if(dot.y != ytarget && (dot.y+ychange + dot.dotyrad) <= window.innerHeight && (dot.y+ychange - dot.dotyrad) >= 0){
 		dot.y = dot.y + ychange;
 		done = false;
 	}
@@ -13,6 +13,7 @@ var animateDot = function(xchange,xtarget,ychange,ytarget,rxchange,rxtarget,rych
 		done = false;
 	}
 	if(dot.dotyrad != rytarget && (dot.y + dot.dotyrad+rychange) <= window.innerHeight && (dot.y - (dot.dotyrad+rychange)) >= 0){
+
 		dot.dotyrad = dot.dotyrad + rychange;
 		done = false;
 	}

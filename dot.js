@@ -28,7 +28,7 @@ var dot = {
 	rightShine : document.createElementNS("http://www.w3.org/2000/svg","ellipse"),
 	draw: function(){
 		
-		setEllipse(this.shape,this.x,this.y,200,170,"blue");
+		setEllipse(this.shape,this.x,this.y,this.dotxrad,this.dotyrad,"blue");
 		setEllipse(this.leftEye,this.x + this.LExOffset, this.y + this.LEyOffset,this.LExradius,this.LEyradius,"black");
 		setEllipse(this.leftShine,this.x + this.LExOffset + this.LExradius/2, this.y + this.LEyOffset - this.LEyradius/4,this.LExradius/3,this.LEyradius/2,"white");
 		setEllipse(this.rightEye,this.x + this.RExOffset, this.y + this.REyOffset,this.RExradius,this.REyradius,"black");
