@@ -1,8 +1,8 @@
 var vimg = document.getElementById("vimg");
 var bg = document.getElementById("background");
-var energy = rest;
+var energy = rest/10;
 setInterval(function() {
-	localStorage.affection = affection;
+	localStorage.affection = 50;
 	localStorage.rest = energy;
 },60000);
 var animLocks = {

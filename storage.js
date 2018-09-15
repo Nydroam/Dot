@@ -8,32 +8,27 @@ function retrieve() {
 		hour = Number(localStorage.hour);
 		minutes = Number(localStorage.minutes);
 
-		/*console.log(rest);
+		console.log(rest);
 		console.log(time);
 		console.log(affection);
 		console.log(hour);
-		console.log(minutes);*/
+		console.log(minutes);
 		updateStatus(rest,time,affe,
 			hour,minutes);
 	} else {
 		if (typeof(Storage) !== "undefined") {
 			date = new Date();
-			rest = 960;
+			rest = 500;
 			time = date.getTime();
 			hour = date.getHours();
 			minutes = date.getMinutes();
-			affection = 1000;
+			affection = 100;
 
 			localStorage.rest = rest;
 		    localStorage.time = time;
 		    localStorage.affection = affection;
 		    localStorage.hour = hour;
 		    localStorage.minutes = minutes;
-		    console.log(localStorage.rest);
-		    console.log(localStorage.time);
-		    console.log(localStorage.affection);
-		    console.log(localStorage.hour);
-		    console.log(localStorage.minutes);
 		}
 	}
 }
@@ -103,7 +98,7 @@ window.onbeforeunload = function store() {
 	//to be called when webpage is closed
 	if (typeof(Storage) !== "undefined") {
 	    // Code for localStorage/sessionStorage.
-	    localStorage.rest = parseInt(rest)+1;
+	    localStorage.rest = parseInt(rest)-1;
 	    localStorage.time = time;
 	    localStorage.affection = affection;
 	    localStorage.hour = hour;
@@ -112,7 +107,6 @@ window.onbeforeunload = function store() {
 	    // No Web Storage support
 	}
 }
-console.log(localStorage.rest);
 if (localStorage == "undefined") {
 	var date;
 	var rest;
@@ -124,7 +118,3 @@ if (localStorage == "undefined") {
 var sleepTime = 1320; //22
 var wakeTime = 360; //6
 retrieve();
-/*console.log(date);
-console.log(rest);
-console.log(time);
-console.log(affection);*/
