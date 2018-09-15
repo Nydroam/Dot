@@ -47,7 +47,7 @@ vimg.appendChild(dot.rightShine);
 
 
 function resize(){
-	vimg.removeEventListener("mousemove",followMouse);
+	
 	vimg.setAttribute("height","100%");
 	vimg.setAttribute("width","100%");
 	
