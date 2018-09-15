@@ -3,7 +3,7 @@ var duration		= 3;
 var transHandler = null;
 var currentColor;
 var targetColor;
-
+var randColor = false;
 function calculateDistance(colorArray1, colorArray2) {
 	var distance = [];
 	for (var i = 0; i < colorArray1.length; i++) {
@@ -82,10 +82,14 @@ function transition(shape) {
 	}
 	
 	// applying the new modified color
-	console.log(rgb2hex(currentColor));
 	shape.style.fill = rgb2hex(currentColor);
 	if (increment[0] == 0 && increment[1] == 0 && increment[2] == 0) {
+		if(randColor){
+			changeColor(shape,Math.floor(Math.random() * (255)),Math.floor(Math.random() * (255)),Math.floor(Math.random() * (255)));
+		}
+		else{
 		clearInterval(transHandler);
+	}
 	}
 }
 var changeColor = function(shape,r,g,b){
@@ -99,7 +103,6 @@ var changeColor = function(shape,r,g,b){
 	
 	distance	= calculateDistance(currentColor, targetColor);
 	increment	= calculateIncrement(distance, fps, duration);
-	console.log(increment);
 	transHandler = setInterval(function() {
 		transition(shape);
 	}, 1000/fps);

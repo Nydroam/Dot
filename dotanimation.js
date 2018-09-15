@@ -5,12 +5,14 @@ var followidVert;
 var currrad = dot.dotyrad;
 var currypos = dot.y;
 var moving = false;
+var randID;
 function setMousePosition(e) {
 	mouseX = e.clientX;
 	mouseY = e.clientY;
 }
 
 var dotFollow = function(){
+	clearInterval(randID);
 	clearInterval(followid);
 	var xchange;
 	var ychange;
@@ -77,7 +79,6 @@ function moveVert(){
 	
 	}
 }
-var randID;
 function randMove(){
 	clearInterval(randID);
 	var randWidth = Math.round(Math.random()*(window.innerWidth - (3*dot.dotxrad)) + dot.dotxrad);
