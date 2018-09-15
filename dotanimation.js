@@ -14,10 +14,10 @@ var dotFollow = function(){
 	clearInterval(followid);
 	var xchange;
 	var ychange;
-	if (mouseX > dot.x + 50){
+	if (mouseX > dot.x + 5){
 		xchange = 2;
 	}
-	else if (mouseX < dot.x - 50){
+	else if (mouseX < dot.x - 5 ){
 		xchange = -2;
 	}
 	else{
@@ -34,7 +34,17 @@ var dotFollow = function(){
 		ychange = 0;
 	}*/
 
-	followid = setInterval(function(){animateDot(xchange,mouseX,0,dot.y,0,dot.dotxrad,0,dot.dotyrad,false)},10);
+	followid = setInterval(function(){
+		if (mouseX > dot.x + 5){
+		xchange = 2;
+	}
+	else if (mouseX < dot.x - 5){
+		xchange = -2;
+	}
+	else{
+		xchange = 0;
+		return;
+	}animateDot(xchange,mouseX,0,dot.y,0,dot.dotxrad,0,dot.dotyrad,false)},10);
 	moveVert();
 }
 
